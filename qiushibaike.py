@@ -22,15 +22,13 @@ def get_the_pic(page):
 # 下载图片
 def download_the_pic(lst):
     for i in lst:
-        # 去图片名称作为文件名称
+        # 取图片名称作为文件名称
         file_name = i.split('/')[-1]
         url = 'http:' + i
         r = requests.get(url)
         # 以二进制格式打开文件并写入，存在则覆盖
         with open(file_name, 'wb') as f:
-            for chunk in r.iter_content():
-                if chunk:
-                    f.write(chunk)
+            f.write(r.content)
             print '%s 下载完成' % file_name.encode('utf8')
 
 if __name__=='__main__':
